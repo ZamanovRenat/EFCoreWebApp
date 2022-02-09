@@ -9,16 +9,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using EFCoreWebApp.DaraAccess;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace EFCoreWebApp
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; set; }
+
+        public Startup(IConfiguration Configuration)
+        {
+            this.Configuration = Configuration;
+        }
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = "Server=(localdb)\\mssqllocaldb;Database=usersdbstore;Trusted_Connection=True;";
             // устанавливаем контекст данных
-            services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<DataContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllers(); // используем контроллеры без представлений
 
