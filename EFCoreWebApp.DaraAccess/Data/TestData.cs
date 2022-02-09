@@ -8,11 +8,11 @@ namespace EFCoreWebApp.DaraAccess.Data
         public static IEnumerable<User> Users => new List<User>()
         {
             new User()
-                { Name = "Tom", Age = 26 },
+                { Name = "Tom", Age = 26, Email = "tom@mail.ru"},
             new User()
-                { Name = "Jerry", Age = 12 },
+                { Name = "Jerry", Age = 12, Email = "jerry@mail.ru" },
             new User()
-                { Name = "Bull", Age = 29 },
+                { Name = "Bull", Age = 29, Email = "bull@mail.ru" },
         };
     }
 }
