@@ -43,7 +43,8 @@ namespace EFCoreWebApp
 
             app.UseSwaggerUi3(x => { x.DocExpansion = "list"; });
 
-            app.UseReDoc(x => x.Path = "/redoc");
+            app.UseHttpsRedirection();
+            //app.UseReDoc(x => x.Path = "/redoc");
 
             app.UseRouting();
 
