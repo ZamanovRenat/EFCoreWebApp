@@ -21,6 +21,14 @@ namespace EFCoreWebApp
             services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
 
             services.AddControllers(); // используем контроллеры без представлений
+
+            //Swagger
+            services.AddOpenApiDocument(options =>
+            {
+                options.DocumentName = "v1";
+                options.Title = "EFCoreWebAppDoc";
+                options.Version = "1";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,6 +38,12 @@ namespace EFCoreWebApp
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseOpenApi();
+
+            app.UseSwaggerUi3(x => { x.DocExpansion = "list"; });
+
+            app.UseReDoc(x => x.Path = "/redoc");
 
             app.UseRouting();
 
