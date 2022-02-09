@@ -10,7 +10,11 @@ namespace EFCoreWebApp.DaraAccess
         public DataContext(DbContextOptions<DataContext> options) 
             : base(options)
         {
-            Database.EnsureCreated();
+            
+        }
+
+        public DataContext()
+        {
         }
     }
 }
