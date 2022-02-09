@@ -7,15 +7,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EFCoreWebApp.DaraAccess;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFCoreWebApp
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            string connection = "Server=(localdb)\\mssqllocaldb;Database=usersdbstore;Trusted_Connection=True;";
+            // устанавливаем контекст данных
+            services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
+
+            services.AddControllers(); // используем контроллеры без представлений
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,10 +35,7 @@ namespace EFCoreWebApp
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers(); // подключаем маршрутизацию на контроллеры
             });
         }
     }
