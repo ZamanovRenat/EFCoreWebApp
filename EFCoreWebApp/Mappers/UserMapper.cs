@@ -15,7 +15,7 @@ namespace EFCoreWebApp.Mappers
             user.Id = model.Id;
             user.Name = model.Name;
             user.Age = model.Age;
-            user.Email = model.Email;
+            //user.Email = model.Email;
 
             return user;
         }

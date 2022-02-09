@@ -6,15 +6,11 @@ namespace EFCoreWebApp.DaraAccess
     public class DataContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-
-        public DataContext(DbContextOptions<DataContext> options) 
-            : base(options)
-        {
-            
-        }
-
+        public DbSet<Company> Companies { get; set; }
         public DataContext()
         {
+            Database.EnsureDeleted();
+            Database.EnsureCreated();
         }
     }
 }
