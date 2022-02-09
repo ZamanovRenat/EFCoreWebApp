@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCoreWebApp", "EFCoreWebApp\EFCoreWebApp.csproj", "{C9A28827-5AD8-4886-9A7F-F5D07C2CBF0E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCoreWebApp.Core", "EFCoreWebApp.Core\EFCoreWebApp.Core.csproj", "{ACF47E82-5FF4-47A2-8B1E-55DA09DE9D86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCoreWebApp.DaraAccess", "EFCoreWebApp.DaraAccess\EFCoreWebApp.DaraAccess.csproj", "{EAB486E4-9261-409D-BB48-B8CD595F0141}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{C9A28827-5AD8-4886-9A7F-F5D07C2CBF0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9A28827-5AD8-4886-9A7F-F5D07C2CBF0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9A28827-5AD8-4886-9A7F-F5D07C2CBF0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACF47E82-5FF4-47A2-8B1E-55DA09DE9D86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACF47E82-5FF4-47A2-8B1E-55DA09DE9D86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACF47E82-5FF4-47A2-8B1E-55DA09DE9D86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACF47E82-5FF4-47A2-8B1E-55DA09DE9D86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAB486E4-9261-409D-BB48-B8CD595F0141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAB486E4-9261-409D-BB48-B8CD595F0141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAB486E4-9261-409D-BB48-B8CD595F0141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAB486E4-9261-409D-BB48-B8CD595F0141}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
