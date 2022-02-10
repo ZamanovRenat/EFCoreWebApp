@@ -9,8 +9,8 @@ namespace EFCoreWebApp.DaraAccess
         public DbSet<Company> Companies { get; set; }
         public DataContext()
         {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
         }
     }
 }
