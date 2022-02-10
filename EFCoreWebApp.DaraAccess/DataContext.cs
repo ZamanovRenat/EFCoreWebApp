@@ -9,8 +9,17 @@ namespace EFCoreWebApp.DaraAccess
         public DbSet<Company> Companies { get; set; }
         public DataContext()
         {
-            //Database.EnsureDeleted();
-            //Database.EnsureCreated();
+            
+        }
+        public DataContext(DbContextOptions<DataContext> options)
+            : base(options)
+        {
+
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            
         }
     }
 }

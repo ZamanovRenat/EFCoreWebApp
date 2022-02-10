@@ -13,21 +13,21 @@ namespace EFCoreWebApp.DaraAccess.Data
                 Id = 1,
                 Name = "Tom",
                 Age = 23,
-                CompanyId = 1, 
+                //CompanyId = 1, 
             },
             new User()
             {
                 Id = 2,
                 Name = "Bob",
                 Age = 23,
-                CompanyId = 2,
+                //CompanyId = 2,
             },
             new User()
             {
                 Id = 3,
                 Name = "Sam",
                 Age = 23,
-                CompanyId = 2,
+                //CompanyId = 2,
             },
         };
 

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EFCoreWebApp.Core.Abstractions.Repositories;
 using EFCoreWebApp.Core.Domain;
 using EFCoreWebApp.DaraAccess;
+using EFCoreWebApp.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -13,84 +15,54 @@ namespace EFCoreWebApp.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private DataContext db;
+        private readonly IRepository<User> _userRepository;
         private readonly ILogger<UsersController> _logger;
 
-        public UsersController(DataContext context, ILogger<UsersController> logger)
+        public UsersController(IRepository<User> userRepository, ILogger<UsersController> logger)
         {
-            db = context;
+            _userRepository = userRepository;
             _logger = logger;
-            if (!db.Users.Any())
-            {
-                db.Users.Add(new User { Name = "Tom", Age = 26 });
-                db.Users.Add(new User { Name = "Alice", Age = 31 });
-                db.SaveChanges();
-            }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> Get()
+        public async Task<ActionResult<IEnumerable<UserViewModel>>> GetAsync()
         {
-            return await db.Users.ToListAsync();
+            var users = await _userRepository.GetAllAsync();
+
+            var userModelList = users.Select(x => new UserViewModel()
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Age = x.Age,
+                
+
+            }).ToList();
+
+            return userModelList;
         }
 
         // GET api/users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> Get(int id)
+        public async Task<ActionResult<UserViewModel>> GetUserById(int id)
         {
-            User user = await db.Users.FirstOrDefaultAsync(x => x.Id == id);
+            var user = await _userRepository.GetByIdAsync(id);
+
             if (user == null)
                 return NotFound();
+            var userModel = new UserViewModel()
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Age = user.Age
+            };
+
             _logger.LogInformation($"Пользователь {id} просмотрен");
-            return new ObjectResult(user);
+            return userModel;
         }
 
-        // POST api/users
-        [HttpPost]
-        public async Task<ActionResult<User>> Post(User user)
-        {
-            if (user == null)
-            {
-                return BadRequest();
-            }
-
-            db.Users.Add(user);
-            await db.SaveChangesAsync();
-            _logger.LogInformation("Добавлен новый пользователь");
-            return Ok(user);
-        }
-
-        // PUT api/users/
-        [HttpPut]
-        public async Task<ActionResult<User>> Put(User user)
-        {
-            if (user == null)
-            {
-                return BadRequest();
-            }
-            if (!db.Users.Any(x => x.Id == user.Id))
-            {
-                return NotFound();
-            }
-
-            db.Update(user);
-            await db.SaveChangesAsync();
-            _logger.LogInformation("Пользователь изменен");
-            return Ok(user);
-        }
-
-        // DELETE api/users/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<User>> Delete(int id)
-        {
-            User user = db.Users.FirstOrDefault(x => x.Id == id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            db.Users.Remove(user);
-            await db.SaveChangesAsync();
-            _logger.LogInformation("Пользователь удален");
-            return Ok(user);
-        }
+        
     }
 }

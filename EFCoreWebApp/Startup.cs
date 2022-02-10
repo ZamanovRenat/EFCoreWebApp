@@ -7,7 +7,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EFCoreWebApp.Core.Abstractions.Repositories;
 using EFCoreWebApp.DaraAccess;
+using EFCoreWebApp.DaraAccess.Data;
+using EFCoreWebApp.DaraAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -23,8 +26,10 @@ namespace EFCoreWebApp
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = "Server=(localdb)\\mssqllocaldb;Database=usersdbstore;Trusted_Connection=True;";
+            //string connection = "Server=(localdb)\\mssqllocaldb;Database=usersdbstore;Trusted_Connection=True;";
             // устанавливаем контекст данных
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddScoped<IDbInitializer, EfDbInitializer>();
             services.AddDbContext<DataContext>(options => 
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -40,7 +45,7 @@ namespace EFCoreWebApp
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDbInitializer dbInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -60,6 +65,8 @@ namespace EFCoreWebApp
             {
                 endpoints.MapControllers(); // подключаем маршрутизацию на контроллеры
             });
+
+            dbInitializer.InitializeDb();
         }
     }
 }
