@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using EFCoreWebApp.Core.Domain;
 
 namespace EFCoreWebApp.Core.Abstractions.Repositories
 {
-    public interface IRepository<T> : IDisposable
-        where T : class
+    public interface IRepository<T> 
+        where T : BaseEntity
     {
-        IEnumerable<T> GetAll();
-        T Get(int id);
-        void Create(T item);
-        void Update(T item);
-        void Delete(int id);
-        void Save();
+        Task<IEnumerable<T>> GetAllAsync();
+
+        Task<T> GetByIdAsync(Guid id);
+
+        Task AddAsync(T entity);
+
+        Task UpdateAsync(T entity);
+
+        Task DeleteAsync(T entity);
+
     }
 }
