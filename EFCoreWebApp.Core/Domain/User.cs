@@ -4,7 +4,7 @@
     {
         public string Name { get; set; }
         public int Age { get; set; }
-        //public int CompanyId { get; set; }      // внешний ключ
-        //public Company Company { get; set; }    // навигационное свойство
+        public int CompanyId { get; set; }      // внешний ключ
+        public Company Company { get; set; }    // навигационное свойство
     }
 }

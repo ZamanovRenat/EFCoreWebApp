@@ -1,4 +1,5 @@
-﻿using EFCoreWebApp.Core.Domain;
+﻿using System;
+using EFCoreWebApp.Core.Domain;
 using EFCoreWebApp.Models;
 
 namespace EFCoreWebApp.Mappers
@@ -10,9 +11,10 @@ namespace EFCoreWebApp.Mappers
             if (user == null)
             {
                 user = new User();
+                user.Id = Guid.NewGuid();
             }
 
-            user.Id = model.Id;
+            //user.Id = model.Id;
             user.Name = model.Name;
             user.Age = model.Age;
             //user.Email = model.Email;

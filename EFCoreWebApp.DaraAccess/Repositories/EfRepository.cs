@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using EFCoreWebApp.Core.Abstractions.Repositories;
 using EFCoreWebApp.Core.Domain;
@@ -23,7 +24,7 @@ namespace EFCoreWebApp.DaraAccess.Repositories
             return entities;
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(Guid id)
         {
             var entity = await _dataContext.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
 

@@ -53,7 +53,7 @@ namespace EFCoreWebApp.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<ActionResult<UserViewModel>> GetUserById(int id)
+        public async Task<ActionResult<UserViewModel>> GetUserById(Guid id)
         {
             var user = await _userRepository.GetByIdAsync(id);
 
@@ -106,7 +106,7 @@ namespace EFCoreWebApp.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPut]
-        public async Task<ActionResult<UserViewModel>> UpdateAsync(int id, UserViewModel model)
+        public async Task<ActionResult<UserViewModel>> UpdateAsync(Guid id, UserViewModel model)
         {
             User User = await _userRepository.GetByIdAsync(id);
 
@@ -135,7 +135,7 @@ namespace EFCoreWebApp.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public async Task<ActionResult<UserViewModel>> DeleteAsync(int id)
+        public async Task<ActionResult<UserViewModel>> DeleteAsync(Guid id)
         {
             User toDelete = await _userRepository.GetByIdAsync(id);
 

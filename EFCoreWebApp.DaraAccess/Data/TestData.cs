@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using EFCoreWebApp.Core.Domain;
 
@@ -10,21 +11,21 @@ namespace EFCoreWebApp.DaraAccess.Data
         {
             new User()
             {
-                Id = 1,
+                Id = Guid.Parse("4fe33943-5aac-42c9-b331-0e2fb4a77ce6"),
                 Name = "Tom",
                 Age = 23,
                 //CompanyId = 1, 
             },
             new User()
             {
-                Id = 2,
+                Id = Guid.Parse("a1aeb3b7-6b76-4a17-acf9-a4608b236cf2"),
                 Name = "Bob",
                 Age = 23,
                 //CompanyId = 2,
             },
             new User()
             {
-                Id = 3,
+                Id = Guid.Parse("df18fd90-9a71-4c81-8cc9-9b56f2edbbee"),
                 Name = "Sam",
                 Age = 23,
                 //CompanyId = 2,
@@ -35,12 +36,12 @@ namespace EFCoreWebApp.DaraAccess.Data
         {
             new Company()
             {
-                Id = 1,
+                Id = Guid.Parse("50bd5471-6c0d-4e44-8196-d60ba4740c6c"),
                 Name = "Google"
             },
             new Company()
             {
-                Id = 2,
+                Id = Guid.Parse("d4a40610-098f-4a8a-bf18-3fd4279adaea"),
                 Name = "Microsoft"
             },
         };
