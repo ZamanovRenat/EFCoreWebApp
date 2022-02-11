@@ -6,7 +6,7 @@ namespace EFCoreWebApp.Mappers
 {
     public class UserMapper
     {
-        public static User MapFromModel(UserViewModel model, User user)
+        public static User MapFromModel(CreateOrEditUserRequest model, User user)
         {
             if (user == null)
             {
