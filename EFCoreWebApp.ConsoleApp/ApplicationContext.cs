@@ -14,7 +14,9 @@ namespace EFCoreWebApp.ConsoleApp
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=consoleapp.db");
+            optionsBuilder
+                .UseLazyLoadingProxies()        // подключение lazy loading
+                .UseSqlite("Data Source=consoleapp.db");
         }
     }
 }
