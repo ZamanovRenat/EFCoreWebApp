@@ -7,6 +7,6 @@ namespace EFCoreWebApp.ConsoleApp.Entities
         public int Id { get; set; }
         public string? Name { get; set; } // название компании
 
-        public List<User> Users { get; set; } = new();
+        public virtual List<User> Users { get; set; } = new();
     }
 }

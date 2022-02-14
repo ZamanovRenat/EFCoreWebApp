@@ -6,6 +6,6 @@
         public string? Name { get; set; }
 
         public int CompanyId { get; set; }      // внешний ключ
-        public Company? Company { get; set; }    // навигационное свойство
+        public virtual Company? Company { get; set; }    // навигационное свойство
     }
 }
